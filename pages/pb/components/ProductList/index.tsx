@@ -44,4 +44,6 @@ export default function  ProductList (props: any) {
         </>
     )
 }
+
+ProductList.Layout = Layout
 //export default ProductList;

@@ -1,17 +1,12 @@
-import usePrice from '@framework/product/use-price'
-import commerce from '@lib/api/commerce'
-import { Layout } from '@components/common'
-import { Button, Text } from '@components/ui'
-import { Bag, Cross, Check, MapPin, CreditCard } from '@components/icons'
 import useSearch from '@framework/product/use-search'
 import { useRouter } from 'next/router'
 import { ProductCard } from '@components/product'
 import type { Product } from '@commerce/types/product'
 import rangeMap from '@lib/range-map'
 import {  Skeleton } from '@components/ui'
-import { Grid, Marquee, Hero } from '@components/ui'
+import { Layout } from '@components/common'
 
-export default function  ProductList (props: any) {
+export default function  ProductGrid (props: any) {
     const {
         item,
     } = props;
@@ -25,7 +20,7 @@ export default function  ProductList (props: any) {
         locale,
       })    
     return (
-        <div class="col-span-12">            
+        <div className="col-span-12">            
             {data ? (
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {data.products.map((product: Product) => (
@@ -53,4 +48,6 @@ export default function  ProductList (props: any) {
         </div>
     )
 }
+
+ProductGrid.Layout = Layout
 //export default ProductList;
