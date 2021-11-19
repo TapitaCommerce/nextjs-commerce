@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8096",
     "analyze": "BUNDLE_ANALYZE=both yarn build",
     "lint": "next lint",
     "prettier-fix": "prettier --write .",
