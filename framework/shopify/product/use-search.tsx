@@ -56,6 +56,7 @@ export const handler: SWRHook<SearchProductsHook> = {
           )
         : data.node?.products?.edges
     } else {
+      console.log(options);
       const data = await fetch<GetAllProductsQuery>({
         query: options.query,
         method,
