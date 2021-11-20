@@ -13,7 +13,7 @@ import { useRouter } from 'next/router'
 
 import ProductList from './pb/components/ProductList';
 import ProductGrid from './pb/components/ProductGrid';
-import { createRequest } from './pb/network/GraphQl';
+import createRequest from './api/network/GraphQl';
 
 declare var x: any;
 var x = require('simi-pagebuilder-react')

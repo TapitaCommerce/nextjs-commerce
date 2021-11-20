@@ -1,13 +1,4 @@
-/**
- *
- * @param {string} endPoint
- * @param {function} callBack
- * @param {string} queryContent
- * @param {Object} variables
- * @param operationName
- */
-
- export function createRequest() {
+const createRequest: any = () => {
     const endPoint = 'https://tapita.io/pb/graphql/';
     const integrationToken = '17nMVmUJAxdditfSvAqBqoC6VJKTKpD21626949895';
     const pageFields = `
@@ -73,3 +64,4 @@
 	let _request = new Request(requestEndPoint, requestData);
 	return _request;
 }
+export default createRequest
