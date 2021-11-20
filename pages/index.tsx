@@ -1,50 +1,51 @@
 import React, { Component, useEffect } from 'react'
-import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+
+import ProductList from './pb/components/ProductList';
+import ProductGrid from './pb/components/ProductGrid';
+import { createRequest } from './pb/network/GraphQl';
+
 declare var x: any;
 var x = require('simi-pagebuilder-react')
-import { useRouter } from 'next/router'
-import ProductList from './pb/components/ProductList';
-
 const { PageBuilderComponent, usePbFinder }= x
 
-const endPoint = 'https://tapita.io/pb/graphql/';
-const integrationToken = '17nMVmUJAxdditfSvAqBqoC6VJKTKpD21626949895';
 
-export default function Home() {  
-  const router = useRouter()
-  const k = usePbFinder({
-    endPoint,
-    integrationToken,
-    getPageItems: true
-  });
-  const {
-    loading: pbLoading,
-    pageMaskedId,
-    findPage,
-    pathToFind,
-    pageData
-  } = k;
+export async function getStaticProps({
+  preview,
+  params,
+  locale,
+  locales,
+}: GetStaticPropsContext) {  
+  let query = createRequest();
+  const res = await fetch(query)
+  const data = await res.json()  
+  const config = { locale, locales }
+  return {
+    props: { data },
+  }
+}
 
-  useEffect(() => {
-    if (
-      router.pathname &&
-      router.pathname === '/'
-    ) {
-      if (!pageMaskedId || router.pathname !== pathToFind)
-        findPage(router.pathname);
-    }
-  }, [router, pageMaskedId, pathToFind, findPage]); 
 
-    if (pageMaskedId) {    
-      return (
-        <>
-          <PageBuilderComponent endPoint={endPoint} maskedId={pageMaskedId} ProductList={ProductList}/>
-        </>
-      )      
-    }
-    return <h1>Loading...</h1>;  
+export default function Home({data}: InferGetStaticPropsType<typeof getStaticProps>) {  
+  //path data 
+  let pageData = {masked_id: null};
+  if(data) {    
+    const pbData = data.data.spb_page.items;        
+    pbData.forEach((item: any) => {
+      if(item.url_path == "/" && item.status){
+        pageData = item;
+        return;
+      }
+    });
+  }  
+  if (pageData) {    
+    let maskId = pageData.masked_id;
+    return (
+        <PageBuilderComponent key={pageData.masked_id} pageData={pageData} ProductList={ProductList}  ProductGrid={ProductGrid}/>
+    )      
+  }
+  return <h1>Loading...</h1>;  
 }
 
 Home.Layout = Layout
