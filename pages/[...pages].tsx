@@ -21,6 +21,7 @@ import { tapitaPageFetcher } from './api/network/tapitaPageFetcher'
 import NotFound from './404'
 import { comparePaths } from './api/network/comparePaths'
 import { ProductScroll } from './pb/components/Product/ProductScroll'
+import Category from './pb/components/Category'
 
 export async function getStaticProps({
                                        preview,
