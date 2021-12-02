@@ -1,51 +1,66 @@
-import React, { Component, useEffect } from 'react'
+import React from 'react'
 import { Layout } from '@components/common'
-import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import type { GetStaticPropsContext } from 'next'
 
-import ProductList from './pb/components/ProductList';
-import ProductGrid from './pb/components/ProductGrid';
-import createRequest  from './api/network/GraphQl';
-
-declare var x: any;
-var x = require('simi-pagebuilder-react')
-const { PageBuilderComponent, usePbFinder }= x
-
+import ProductList from './pb/components/Product/ProductList'
+import ProductGrid from './pb/components/Product/ProductGrid'
+import { PageBuilderComponent } from 'simi-pagebuilder-react'
+import useSWR from 'swr'
+import { TAPITA_ENDPOINT, TAPITA_INTEGRATION_TOKEN } from './pb/config'
+import { InferGetStaticPropsType } from 'next'
+import { tapitaPageFetcher } from './api/network/tapitaPageFetcher'
+import { comparePaths } from './api/network/comparePaths'
+import { ProductScroll } from './pb/components/Product/ProductScroll'
+import Category from './pb/components/Category'
 
 export async function getStaticProps({
-  preview,
-  params,
-  locale,
-  locales,
-}: GetStaticPropsContext) {  
-  let query = createRequest();
-  const res = await fetch(query)
-  const data = await res.json()  
+                                       locale,
+                                       locales,
+                                       params
+                                     }: GetStaticPropsContext<{ pages: string[] }>) {
+
   const config = { locale, locales }
+  const path = params ? params.pages.join('/') : '/'
+
   return {
-    props: { data },
+    props: {
+      config,
+      path
+    }
   }
 }
 
+export default function Home(props: InferGetStaticPropsType<typeof getStaticProps>): any {
+  const { path } = props
+  const { data, error } = useSWR(
+    path,
+    tapitaPageFetcher
+  )
+  const pageData = data ?
+    data.data.spb_page.items.find((item: any) => comparePaths(item.url_path, path) && item.status)
+    : {}
 
-export default function Home({data}: InferGetStaticPropsType<typeof getStaticProps>) {  
-  //path data 
-  let pageData = {masked_id: null};
-  if(data) {    
-    const pbData = data.data.spb_page.items;        
-    pbData.forEach((item: any) => {
-      if(item.url_path == "/" && item.status){
-        pageData = item;
-        return;
-      }
-    });
-  }  
-  if (pageData) {    
-    let maskId = pageData.masked_id;
+  if (error) return 'An error has occurred.'
+  if (!data) return <h1>Loading...</h1>
+
+
+  if (pageData) {
+    const maskId: string = pageData.masked_id
+
     return (
-        <PageBuilderComponent key={pageData.masked_id} pageData={pageData} ProductList={ProductList}  ProductGrid={ProductGrid}/>
-    )      
+      <PageBuilderComponent
+        key={maskId}
+        endPoint={TAPITA_ENDPOINT}
+        pageData={pageData}
+        ProductList={ProductList}
+        ProductGrid={ProductGrid}
+        ProductScroll={ProductScroll}
+        Category={Category}
+      />
+    )
   }
-  return <h1>Loading...</h1>;  
+
+  return null
 }
 
 Home.Layout = Layout

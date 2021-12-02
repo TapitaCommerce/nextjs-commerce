@@ -1,0 +1,89 @@
+.carefree-container {
+  overflow: hidden;
+}
+
+.carefree-container .inner-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.carefree-container .inner-container .title {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+
+.carefree-container .inner-container .child-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  overflow: auto;
+  scroll-behavior: smooth;
+  /* this will hide the scrollbar in mozilla based browsers */
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+  /* this will hide the scrollbar in internet explorers */
+  -ms-overflow-style: none;
+}
+
+
+.carefree-container .inner-container .child-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carefree-container .inner-container .child-container > * {
+  min-width: 30%;
+}
+
+.fashionable-pagination-container {
+  margin-top: 0.75rem;
+}
+
+.simple-grey-dot {
+  opacity: 0.5;
+  color: #000;
+  font-size: 12px !important;
+  margin-left: 8px;
+  width: 12px;
+  height: 12px;
+  /*filter: invert(56%) sepia(6%) saturate(196%) hue-rotate(154deg) brightness(90%) contrast(87%)*/
+  filter: invert(57%) sepia(58%) saturate(4843%) hue-rotate(329deg) brightness(88%) contrast(98%);
+}
+
+.simple-grey-dot:active, .simple-grey-dot:hover, .simple-grey-dot-active {
+  opacity: 1;
+}
+
+.simple-grey-dot-active {
+  opacity: 1;
+}
+
+.orbital-dot {
+  opacity: 1;
+  font-size: 25px !important;
+  width: 22px;
+  height: 22px;
+  /*filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);*/
+  filter: invert(87%) sepia(27%) saturate(380%) hue-rotate(329deg) brightness(105%) contrast(103%)
+}
+
+.small-horizontal-bar {
+  width: 1rem;
+  height: 2px;
+  /*background: #000;*/
+  background: #FBFFE2;
+  display: inline-block;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.fashionable-pagination-container {
+  display: flex;
+  align-items: center;
+}
+
+.cate_name {
+  text-align: center;
+  margin-top: 10px;
+}

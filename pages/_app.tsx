@@ -6,6 +6,7 @@ import { FC, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
+import '@assets/styles.css'
 
 const Noop: FC = ({ children }) => <>{children}</>
 

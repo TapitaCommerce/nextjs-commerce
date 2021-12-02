@@ -9,7 +9,7 @@ A commerce provider is a headless e-commerce platform that integrates with the [
 Adding a commerce provider means adding a new folder in `framework` with a folder structure like the next one:
 
 - `api`
-  - index.ts
+  - index.tsx
 - `product`
   - usePrice
   - useSearch
@@ -33,13 +33,13 @@ Adding a commerce provider means adding a new folder in `framework` with a folde
   - useRemoveItem
   - useUpdateItem
 - `env.template`
-- `index.ts`
+- `index.tsx`
 - `provider.ts`
 - `commerce.config.json`
 - `next.config.js`
 - `README.md`
 
-`provider.ts` exports a provider object with handlers for the [Commerce Hooks](./README.md#commerce-hooks) and `api/index.ts` exports a Node.js provider for the [Commerce API](./README.md#commerce-api)
+`provider.ts` exports a provider object with handlers for the [Commerce Hooks](./README.md#commerce-hooks) and `api/index.tsx` exports a Node.js provider for the [Commerce API](./README.md#commerce-api)
 
 > **Important:** We use TypeScript for every provider and expect its usage for every new one.
 
