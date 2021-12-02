@@ -12,60 +12,8 @@ export const recursiveFindCate = (cateArr, idToFind) => {
   return foundCate
 }
 
-const imageStyle = {
-  display: 'block',
-  margin: '10px auto',
-  width: '100%'
-}
-
-
 const Category = (props) => {
+  //currently cannot fetch
   return null
-  const { item } = props
-  // const { formatMessage } = useIntl();
-  // const { data } = useQuery(GET_COLLECTION_DETAILS, {
-  //   fetchPolicy: 'cache-first'
-  // })
-  const { data, error } = useSWR(
-    '/',
-    tapitaCategoryFetcher
-  )
-
-  return <h1>{JSON.stringify(data)}</h1>
-
-  if (
-    item &&
-    item.dataParsed &&
-    item.dataParsed.openCategoryProducts &&
-    data
-  ) {
-    const { dataParsed } = item
-    const collectionData = data.collections.edges
-    const idToFind = dataParsed.openCategoryProducts
-    const foundCate = recursiveFindCate(collectionData, idToFind)
-
-    if (foundCate) {
-      return (
-        <link
-          href={'/collections/' + foundCate.node.handle}
-          style={{ width: '100%' }}
-        >
-          {dataParsed.image ? (
-            <img
-              src={dataParsed.image}
-              alt={foundCate.node.title}
-              style={imageStyle}
-            />
-          ) : (
-            ''
-          )}
-          <div className='cate_name'>
-            {foundCate.node.title}
-          </div>
-        </link>
-      )
-    }
-  }
-  return ''
 }
 export default Category
