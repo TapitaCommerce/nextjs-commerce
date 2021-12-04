@@ -8,7 +8,7 @@ export const getRandomString = (length: number = 20): string => {
   // so first character is not a number
   result.push(
     characters.slice(0, characters.length - 10)
-      .charAt(Math.floor(Math.random() * charactersLength)
+      .charAt(Math.floor(Math.random() * (charactersLength - 10))
       )
   )
 
