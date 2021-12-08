@@ -45,3 +45,5 @@ export const ProductScroll = (props: {
 
   return null
 }
+
+export default ProductScroll

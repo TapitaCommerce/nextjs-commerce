@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FashionableDotPagination } from './FashionableDotPagination'
+import FashionableDotPagination from './FashionableDotPagination'
 import { getRandomString } from '../../utils/getRandomString'
 // import './index.scss'
 import { mergeClassStrings } from '../../utils/mergeClassStrings'
@@ -67,3 +67,5 @@ export const CarefreeHorizontalScroll = (props) => {
     </React.Fragment>
   )
 }
+
+export default CarefreeHorizontalScroll

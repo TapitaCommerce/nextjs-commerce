@@ -47,3 +47,5 @@ export const useCarefreeDots = (props) => {
     numberOfSteps: numberOfSteps
   }
 }
+
+export default useCarefreeDots;
