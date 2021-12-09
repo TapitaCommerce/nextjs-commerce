@@ -53,3 +53,5 @@ export const useProduct = (props: {
     item
   }
 }
+
+export default useProduct;

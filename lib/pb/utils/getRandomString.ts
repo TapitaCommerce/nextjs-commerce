@@ -19,3 +19,5 @@ export const getRandomString = (length: number = 20): string => {
   }
   return result.join('')
 }
+
+export default getRandomString;
