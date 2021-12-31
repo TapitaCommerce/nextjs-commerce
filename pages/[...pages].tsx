@@ -11,17 +11,17 @@ import { missingLocaleInPages } from '@lib/usage-warns'
 import type { Page } from '@commerce/types/page'
 import { useRouter } from 'next/router'
 
-import ProductList from './pb/components/Product/ProductList'
-import ProductGrid from './pb/components/Product/ProductGrid'
+import ProductList from '@lib/pb/components/Product/ProductList'
+import ProductGrid from '@lib/pb/components/Product/ProductGrid'
 import { PageBuilderComponent } from 'simi-pagebuilder-react'
 import useSWR from 'swr'
-import { TAPITA_ENDPOINT } from './pb/config'
+import { TAPITA_ENDPOINT } from '@lib/pb/config'
 import React from 'react'
 import { tapitaPageFetcher } from './api/network/tapitaPageFetcher'
 import NotFound from './404'
 import { comparePaths } from './api/network/comparePaths'
-import { ProductScroll } from './pb/components/Product/ProductScroll'
-import Category from './pb/components/Category'
+import { ProductScroll } from '@lib/pb/components/Product/ProductScroll'
+import Category from '@lib/pb/components/Category'
 
 export async function getStaticProps({
                                        preview,

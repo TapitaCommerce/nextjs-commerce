@@ -2,16 +2,16 @@ import React from 'react'
 import { Layout } from '@components/common'
 import type { GetStaticPropsContext } from 'next'
 
-import ProductList from './pb/components/Product/ProductList'
-import ProductGrid from './pb/components/Product/ProductGrid'
+import ProductList from '@lib/pb/components/Product/ProductList'
+import ProductGrid from '@lib/pb/components/Product/ProductGrid'
 import { PageBuilderComponent } from 'simi-pagebuilder-react'
 import useSWR from 'swr'
-import { TAPITA_ENDPOINT, TAPITA_INTEGRATION_TOKEN } from './pb/config'
+import { TAPITA_ENDPOINT, TAPITA_INTEGRATION_TOKEN } from '@lib/pb/config'
 import { InferGetStaticPropsType } from 'next'
 import { tapitaPageFetcher } from './api/network/tapitaPageFetcher'
 import { comparePaths } from './api/network/comparePaths'
-import { ProductScroll } from './pb/components/Product/ProductScroll'
-import Category from './pb/components/Category'
+import { ProductScroll } from '@lib/pb/components/Product/ProductScroll'
+import Category from '@lib/pb/components/Category'
 
 export async function getStaticProps({
                                        locale,
